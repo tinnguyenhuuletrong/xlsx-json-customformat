@@ -86,34 +86,34 @@ const EXPORT_TYPE_MAP = {
 	"object": exportObject
 }
 
-
 let inputFile = null
 let inputFormatFile = null
 let outputFile = null
 
-
+// Parse Args
 const args = process.argv
 for (var i = 0; i < args.length; i++) {
-	if(args[i] == "-in")
-		inputFile = args[i+1]
-	else if(args[i] == "-config")
-		inputFormatFile = args[i+1]
-	else if(args[i] == "-out")
-		outputFile = args[i+1]
+	if (args[i] == "-in")
+		inputFile = args[i + 1]
+	else if (args[i] == "-config")
+		inputFormatFile = args[i + 1]
+	else if (args[i] == "-out")
+		outputFile = args[i + 1]
 }
 
-//Debug
+//----Debug----
 // let inputFile = "./test/GameConfig.xlsx"
 // let inputFormatFile = "./test/format.json"
 // let outputFile = "./test/out.json"
 
-if(!inputFile || !inputFormatFile || !outputFile) {
+if (!inputFile || !inputFormatFile || !outputFile) {
 	console.log("Usage: -in <input xlsx> -out <output json> -config <config json>")
 	process.exit(0)
 }
 
 const begin = Date.now()
 
+// Parse Config file
 let Format = null
 try {
 	const formatInput = fs.readFileSync(inputFormatFile, 'utf8')
@@ -124,12 +124,12 @@ try {
 	process.exit(0)
 }
 
-const RESULT = {}
 
-// read from a file
+// Read Excel files
 var workbook = new Excel.Workbook();
 workbook.xlsx.readFile(inputFile)
 	.then(function() {
+		const RESULT = {}
 		for (var key in Format) {
 			console.log("[Info] export sheet", key)
 
@@ -157,4 +157,3 @@ workbook.xlsx.readFile(inputFile)
 	.catch(err => {
 		console.error("[Error] ", err)
 	})
-
