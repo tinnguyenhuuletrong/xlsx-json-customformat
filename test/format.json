@@ -1,0 +1,41 @@
+{
+	"DailyRewardsList": {
+		"export": "array_object",
+		"headerRow": 1,
+		"dataRowBegin": 2,
+		"ignore": ["DayNumber"]
+	},
+	"FreeRewardList": {
+		"export": "array_value",
+		"headerRow": 1,
+		"dataRowBegin": 2,
+		"valueCol": "Value"
+	},
+	"ChestMaxFireflyInDayList": {
+		"export": "array_value",
+		"headerRow": 1,
+		"dataRowBegin": 2,
+		"valueCol": "Value"
+	},
+	"GachaConfig": {
+		"export": "object",
+		"headerRow": 1,
+		"dataRowBegin": 2,
+		"keyCol": "Key",
+		"ignore": ["Type"]
+	},
+	"ChestConfig": {
+		"export": "object",
+		"headerRow": 1,
+		"dataRowBegin": 2,
+		"keyCol": "Key",
+		"ignore": ["Type"]
+	},
+	"FreeRewardConfig": {
+		"export": "object",
+		"headerRow": 1,
+		"dataRowBegin": 2,
+		"keyCol": "Key",
+		"ignore": ["Type"]
+	}
+}
