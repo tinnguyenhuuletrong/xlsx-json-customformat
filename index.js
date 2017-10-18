@@ -21,7 +21,9 @@ function exportArrayObject(sheet, config) {
 				return
 			tmp[headers[colNum]] = cell.value
 		})
-		outputs.push(tmp)
+
+		if(Object.keys(tmp).length > 0)
+			outputs.push(tmp)
 	}
 
 	return outputs
@@ -72,7 +74,7 @@ function exportObject(sheet, config) {
 			tmp[headers[colNum]] = cell.value
 		})
 
-		if (rowData.values[keyColIndex] != null)
+		if (rowData.values[keyColIndex] != null && Object.keys(tmp).length > 0)
 			outputs[rowData.values[keyColIndex]] = tmp
 	}
 
@@ -136,13 +138,13 @@ workbook.xlsx.readFile(inputFile)
 			var sheet = workbook.getWorksheet(key)
 			const config = Format[key]
 			if (sheet == null) {
-				console.warning("[Warning] Could not found sheet", key)
+				console.log("[Warning] Could not found sheet", key)
 				continue
 			}
 
 			const exportMethod = EXPORT_TYPE_MAP[config.export]
 			if (exportMethod == null) {
-				console.warning("[Warning] Export method not found", config.export)
+				console.log("[Warning] Export method not found", config.export)
 				continue
 			}
 
